@@ -9,6 +9,11 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+  },
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
@@ -26,7 +31,7 @@ module.exports = {
       ],
     "linebreak-style": [
       "error",
-      "windows"
+      "unix"
     ],
     "quotes": [
       "error",
