@@ -9,7 +9,7 @@ on:
     types: [opened, synchronize]
 jobs:
     simple_deployment_pipeline:
-      runs-on: windows-2019
+      runs-on: ubuntu-22.04
       steps:
         - uses: actions/checkout@v3
         - uses: actions/setup-node@v3
@@ -31,7 +31,7 @@ jobs:
           if: ${{ github.event_name == 'push' }}
           run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
     bump_version:
-      runs-on: windows-2019
+      runs-on: ubuntu-22.04
       needs: [simple_deployment_pipeline]
       steps:
         - name: Bump version and push tag
@@ -40,3 +40,5 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             DEFAULT_BUMP: patch 
+            WITH_V: true
+            PRERELEASE: true
