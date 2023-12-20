@@ -43,4 +43,5 @@ jobs:
             RELEASE_BRANCHES: main
             WITH_V: true
             PRERELEASE: true
+            SOURCE: ../../
 
