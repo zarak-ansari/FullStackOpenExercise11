@@ -30,3 +30,13 @@ jobs:
         - name: Trigger deployment
           if: ${{ github.event_name == 'push' }}
           run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+    bump_version:
+      runs-on: windows-2019
+      needs: [simple_deployment_pipeline]
+      steps:
+        - name: Bump version and push tag
+          if: ${{ github.event_name == 'push' }}
+          uses: anothrNick/github-tag-action@1.55.0
+          env:
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            DEFAULT_BUMP: patch 
