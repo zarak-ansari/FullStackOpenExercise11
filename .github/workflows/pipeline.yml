@@ -41,6 +41,7 @@ jobs:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
             DEFAULT_BUMP: patch 
             DEFAULT_BRANCH: main
+            RELEASE_BRANCHES: main
             WITH_V: true
             PRERELEASE: true
-            SOURCE: ..\..\
+
