@@ -30,6 +30,22 @@ jobs:
         - name: Trigger deployment
           if: ${{ github.event_name == 'push' }}
           run: curl https://api.render.com/deploy/srv-${{ secrets.RENDER_SERVICE_ID }}?key=${{ secrets.RENDER_API_KEY }}
+
+        - name: discord success notification
+          if: success()
+          uses: rjstone/discord-webhook-notify@v1
+          with:
+            severity: info
+            details: Succeeded!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        - name: discord failure notification
+          if: failure()
+          uses: rjstone/discord-webhook-notify@v1
+          with:
+            severity: error
+            details: Failed!
+            webhookUrl: ${{ secrets.DISCORD_WEBHOOK }}
+        
     bump_version:
       runs-on: ubuntu-22.04
       needs: [simple_deployment_pipeline]
@@ -44,5 +60,4 @@ jobs:
             RELEASE_BRANCHES: main
             DEFAULT_BUMP: patch
             WITH_V: true
-
 
