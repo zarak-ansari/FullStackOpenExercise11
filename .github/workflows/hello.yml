@@ -10,7 +10,7 @@ jobs:
     runs-on: windows-2019
     steps:
       - name: Say hello
-        run: echo "Hello World!"
+        run: echo "Hello World"
       - name: Print Date
         run: date
       - name: Print Directory Contents
