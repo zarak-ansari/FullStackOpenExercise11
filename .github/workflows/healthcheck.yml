@@ -2,9 +2,8 @@
 name: Health Check Pipeline
 
 on:
-  push:
-    branches:
-      - main
+  schedule:
+    - cron:  '30 5,17 * * *'
 jobs:
     health-check:
       runs-on: ubuntu-22.04
